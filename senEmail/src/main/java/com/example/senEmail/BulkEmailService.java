@@ -39,6 +39,8 @@ public class BulkEmailService {
         int failedCount = 0;
 //        int maxEmails = 100;
 
+        int lastRowIndex=0;
+
         try (FileInputStream fis = new FileInputStream(excelFilePath);
              Workbook workbook = new XSSFWorkbook(fis)) {
 
@@ -54,6 +56,7 @@ public class BulkEmailService {
             for (int i = startRowIndex; i <= lastRow && sentCount < maxEmails; i++) {
 
                 Row row = sheet.getRow(i);
+                lastRowIndex=row.getRowNum();
                 if (row == null) {
                     failedCount++;
                     continue;
@@ -74,10 +77,10 @@ public class BulkEmailService {
                 }
 
                 endTime = System.currentTimeMillis();
-                System.out.println("Cell read time: " + (endTime - startTime) + " ms");
+//                System.out.println("Cell read time: " + (endTime - startTime) + " ms");
 
                 // ---- Random delay (3–20 seconds) ----
-                int delayInSeconds = ThreadLocalRandom.current().nextInt(5, 30);
+                int delayInSeconds = ThreadLocalRandom.current().nextInt(10, 30);
                 Thread.sleep(delayInSeconds * 1000L);
 
                 System.out.println("Sleep method read time: " + delayInSeconds + " second");
@@ -87,12 +90,14 @@ public class BulkEmailService {
                 endTime = System.currentTimeMillis();
 
                 System.out.println("Email sent to " + toEmail
-                        + " | Time: " + (endTime - startTime) + " ms");
+                        + " | Time: " + (endTime - startTime) + " ms | Row line number: "+lastRowIndex);
 
                 successCount++;
                 sentCount++;
+
             }
 
+            System.out.println("Email sent to last row: " + lastRowIndex);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             return "Email sending interrupted.";

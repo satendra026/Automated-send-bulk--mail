@@ -161,13 +161,13 @@ public class EmailTemplate {
 
             long end = System.nanoTime();
 
-            logger.info("Mail sent to {}", toEmail);
-            logger.info("Create message: {} ms", (t2 - t1) / 1_000_000);
-            logger.info("Prepare body: {} ms", (t3 - t2) / 1_000_000);
-            logger.info("Attach file: {} ms", (t4 - t3) / 1_000_000);
-            logger.info("SMTP send time: {} ms", (end - t4) / 1_000_000);
-            logger.info("TOTAL execution time: {} ms",
-                    (end - start) / 1_000_000);
+//            logger.info("Mail sent to {}", toEmail);
+//            logger.info("Create message: {} ms", (t2 - t1) / 1_000_000);
+//            logger.info("Prepare body: {} ms", (t3 - t2) / 1_000_000);
+//            logger.info("Attach file: {} ms", (t4 - t3) / 1_000_000);
+//            logger.info("SMTP send time: {} ms", (end - t4) / 1_000_000);
+//            logger.info("TOTAL execution time: {} ms",
+//                    (end - start) / 1_000_000);
 
         } catch (MessagingException e) {
             logger.error("Failed to send mail to {}", toEmail, e);
