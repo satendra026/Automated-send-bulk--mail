@@ -52,6 +52,7 @@ public class BulkEmailService {
 
             int sentCount = 0;
             int lastRow = sheet.getLastRowNum();
+            startRowIndex=startRowIndex-1;
 
             for (int i = startRowIndex; i <= lastRow && sentCount < maxEmails; i++) {
 
@@ -90,14 +91,14 @@ public class BulkEmailService {
                 endTime = System.currentTimeMillis();
 
                 System.out.println("Email sent to " + toEmail
-                        + " | Time: " + (endTime - startTime) + " ms | Row line number: "+lastRowIndex);
+                        + " | Time: " + (endTime - startTime) + " ms | Row line number: "+lastRowIndex+1);
 
                 successCount++;
                 sentCount++;
 
             }
 
-            System.out.println("Email sent to last row: " + lastRowIndex);
+            System.out.println("Email sent to last row: " + lastRowIndex+1);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             return "Email sending interrupted.";
