@@ -6,6 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 import java.io.FileInputStream;
 
@@ -59,6 +60,7 @@ import java.io.FileInputStream;
 
 
 @SpringBootApplication
+@EnableAsync
 public class SenEmailApplication {
 
     public static void main(String[] args) {
